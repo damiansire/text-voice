@@ -6,18 +6,13 @@ import playsound
 import tempfile
 
 def text_to_speak(text, language = "es"):
-    try:
-        gttsObj = gTTS(text=text, lang=language)
-        tempWavFile = tempfile.mktemp('.wav')
-        gttsObj.save(tempWavFile)
-        playsound.playsound(tempWavFile)
-        if os.path.isfile(tempWavFile):
-            os.remove(tempWavFile)
-        return True
-    except ValueError:
-        print("UPS, EXPLOTO EN TEXT_TO_SPEAK")
-        print(ValueError)
-        return False
+    gttsObj = gTTS(text=text, lang=language)
+    tempWavFile = tempfile.mktemp('.wav')
+    gttsObj.save(tempWavFile)
+    playsound.playsound(tempWavFile)
+    if os.path.isfile(tempWavFile):
+        os.remove(tempWavFile)
+    return True
 
 def save_text_mp3(text, language = "es", fileName = "audio"):
     gttsObj = gTTS(text=text, lang=language)
